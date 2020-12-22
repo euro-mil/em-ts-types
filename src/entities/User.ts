@@ -12,14 +12,14 @@ export class User {
     @Column()
     email: string;
 
-    @Column()
+    @Column({ nullable: true })
+    photo: string;
+
+    @Column({ nullable: true })
     email_secondary: string;
 
-    @Column()
-    auth_token: string;
-
-    @Column()
-    access_token: string;
+    @Column({ nullable: true })
+    refreshToken: string;
 
     @CreateDateColumn()
     created_at: Date
