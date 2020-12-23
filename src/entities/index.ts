@@ -7,3 +7,4 @@ export * from "./Subscription";
 export * from "./UserSubscription";
 export * from "./Payment";
 export * from "./Bet";
+export * from "./Auth";
