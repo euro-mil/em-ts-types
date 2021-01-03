@@ -1,5 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from "typeorm";
-import { Country, Draw, User } from "./";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { User } from "./";
+import { Bet } from "./Bet";
+
+export enum TicketStatus {
+    IDLE = "idle",
+    DELETED = "deleted",
+    CONFIRMED = "confirmed",
+}
 
 @Entity()
 export class Ticket {
@@ -7,21 +14,28 @@ export class Ticket {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => Draw, draw => draw.id, { nullable: false })
-    draw: Draw;
-
     @ManyToOne(() => User, user => user.id, { nullable: false })
     user: User;
 
-    @Column({ type: 'timestamp' })
-    date: Date
+    @Column({ type: 'date' })
+    draw_date: Date
 
-    @Column()
+    @Column({ nullable: true })
     price: number
+
+    @Column({
+        type: "enum",
+        enum: TicketStatus,
+        default: TicketStatus.IDLE
+    })
+    status: TicketStatus;
 
     @CreateDateColumn()
     created_at: Date
 
     @UpdateDateColumn()
     updated_at: Date
+
+    @OneToMany(() => Bet, bet => bet.ticket)
+    bets: Bet;
 }

@@ -17,7 +17,7 @@ export class Draw {
     @Column("int", { array: true })
     stars: number[];
 
-    @Column({ type: 'timestamp' })
+    @Column({ type: 'date' })
     date: Date
 
     @Column({
