@@ -37,7 +37,7 @@ export class Ticket {
   })
   status: TicketStatus;
 
-  @Column("simple-json")
+  @Column({ type: "simple-json", nullable: true })
   ocr_response: string;
 
   @CreateDateColumn()
