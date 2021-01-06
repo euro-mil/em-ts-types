@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Index, OneToMany } from "typeorm";
+import { Prizes } from ".";
 
 export enum DrawStatus {
     IDLE = "idle",
@@ -17,6 +18,7 @@ export class Draw {
     @Column("int", { array: true })
     stars: number[];
 
+    @Index()
     @Column({ type: 'date' })
     date: Date
 
@@ -26,6 +28,9 @@ export class Draw {
         default: DrawStatus.IDLE
     })
     status: DrawStatus;
+
+    @OneToMany(() => Prizes, prizes => prizes.draw)
+    prizes: Prizes;
 
     @CreateDateColumn()
     created_at: Date
