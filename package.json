@@ -1,6 +1,6 @@
 {
   "name": "em-ts-types",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "EM TS Types",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
