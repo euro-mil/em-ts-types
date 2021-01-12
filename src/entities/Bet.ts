@@ -5,8 +5,7 @@ import {
   ManyToOne,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
-  JoinColumn,
+  OneToMany,
 } from "typeorm";
 import { Prizes, Ticket } from ".";
 
@@ -28,8 +27,7 @@ export class Bet {
   @Column("int", { array: true })
   stars: number[];
 
-  @OneToOne(() => Prizes)
-  @JoinColumn()
+  @ManyToOne(() => Prizes, (prize) => prize.id)
   prize: Prizes;
 
   @Column({

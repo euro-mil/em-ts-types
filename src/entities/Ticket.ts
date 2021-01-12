@@ -16,6 +16,12 @@ export enum TicketStatus {
   CONFIRMED = "confirmed",
 }
 
+export enum NotificationStatus {
+  SENT = "sent",
+  UNSENT = "unsent",
+  FAILED = "failed",
+}
+
 @Entity()
 export class Ticket {
   @PrimaryGeneratedColumn()
@@ -36,6 +42,13 @@ export class Ticket {
     default: TicketStatus.IDLE,
   })
   status: TicketStatus;
+
+  @Column({
+    type: "enum",
+    enum: NotificationStatus,
+    default: NotificationStatus.UNSENT,
+  })
+  email_nofication: NotificationStatus;
 
   @Column({ type: "simple-json", nullable: true })
   ocr_response: string;
