@@ -7,8 +7,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { User } from "./";
-import { Bet } from "./Bet";
+import { User, Bet, Scan } from ".";
 
 export enum TicketStatus {
   IDLE = "idle",
@@ -30,8 +29,17 @@ export class Ticket {
   @ManyToOne(() => User, (user) => user.id, { nullable: false })
   user: User;
 
-  @Column({ type: "date" })
+  @OneToMany(() => Bet, (bet) => bet.ticket)
+  bets: Bet;
+
+  @ManyToOne(() => Scan, (scan) => scan.id, { nullable: true })
+  scan: Scan;
+
+  @Column({ type: "date", nullable: true })
   draw_date: Date;
+
+  @Column({ type: "date", nullable: true })
+  extracted_draw_date: Date;
 
   @Column({ nullable: true })
   price: number;
@@ -50,15 +58,9 @@ export class Ticket {
   })
   email_nofication: NotificationStatus;
 
-  @Column({ type: "simple-json", nullable: true })
-  ocr_response: string;
-
   @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()
   updated_at: Date;
-
-  @OneToMany(() => Bet, (bet) => bet.ticket)
-  bets: Bet;
 }
