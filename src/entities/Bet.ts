@@ -5,7 +5,6 @@ import {
   ManyToOne,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
 } from "typeorm";
 import { Prizes, Ticket } from ".";
 
@@ -26,6 +25,12 @@ export class Bet {
 
   @Column("int", { array: true })
   stars: number[];
+
+  @Column("int", { array: true, nullable: true })
+  extracted_numbers: number[];
+
+  @Column("int", { array: true, nullable: true })
+  extracted_stars: number[];
 
   @ManyToOne(() => Prizes, (prize) => prize.id)
   prize: Prizes;
