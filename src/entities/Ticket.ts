@@ -7,7 +7,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { User, Bet, Scan } from ".";
+import { User, Bet, Scan, Country } from ".";
 
 export enum TicketStatus {
   IDLE = "idle",
@@ -34,6 +34,9 @@ export class Ticket {
 
   @ManyToOne(() => Scan, (scan) => scan.id, { nullable: true })
   scan: Scan;
+
+  @ManyToOne(() => Country, (country) => country.id, { nullable: false })
+  country: Country;
 
   @Column({ type: "date", nullable: true })
   draw_date: Date;

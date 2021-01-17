@@ -1,33 +1,44 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToMany,
+  ManyToOne,
+} from "typeorm";
 import { Ticket } from "./Ticket";
+import { Country } from "./Country";
 
 @Entity()
 export class User {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @PrimaryGeneratedColumn()
-    id: number;
+  @OneToMany(() => Ticket, (ticket) => ticket.user)
+  tickets: Ticket;
 
-    @Column()
-    name: string;
+  @ManyToOne(() => Country, (country) => country.id, { nullable: true })
+  country: Country;
 
-    @Column()
-    email: string;
+  @Column()
+  name: string;
 
-    @Column({ nullable: true })
-    photo: string;
+  @Column()
+  email: string;
 
-    @Column({ nullable: true })
-    email_secondary: string;
+  @Column({ nullable: true })
+  photo: string;
 
-    @Column({ nullable: true })
-    refreshToken: string;
+  @Column({ nullable: true })
+  email_secondary: string;
 
-    @CreateDateColumn()
-    created_at: Date
+  @Column({ nullable: true })
+  refreshToken: string;
 
-    @UpdateDateColumn()
-    updated_at: Date
+  @CreateDateColumn()
+  created_at: Date;
 
-    @OneToMany(() => Ticket, (ticket) => ticket.user)
-    tickets: Ticket;
+  @UpdateDateColumn()
+  updated_at: Date;
 }
