@@ -22,7 +22,7 @@ export class Prizes {
   @Column()
   position: number;
 
-  @Column()
+  @Column({ nullable: true })
   amount: number;
 
   @CreateDateColumn()
