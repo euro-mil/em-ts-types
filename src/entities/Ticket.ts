@@ -59,7 +59,14 @@ export class Ticket {
     enum: NotificationStatus,
     default: NotificationStatus.UNSENT,
   })
-  email_nofication: NotificationStatus;
+  email_position_notification: NotificationStatus;
+
+  @Column({
+    type: "enum",
+    enum: NotificationStatus,
+    default: NotificationStatus.UNSENT,
+  })
+  email_prize_notification: NotificationStatus;
 
   @CreateDateColumn()
   created_at: Date;
