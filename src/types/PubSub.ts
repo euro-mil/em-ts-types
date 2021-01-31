@@ -1,4 +1,5 @@
 export enum PubSubTopics {
-  PROCESS_PRIZES = "process_prizes",
-  SEND_RESULTS_EMAIL = "send_results_email",
+  PROCESS_POSITIONS = "process_positions",
+  NOTIFY_POSITIONS = "send_notify_positions",
+  NOTIFY_PRIZES = "send_notify_prizes",
 }
