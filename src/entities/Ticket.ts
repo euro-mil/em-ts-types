@@ -30,7 +30,7 @@ export class Ticket {
   user: User;
 
   @OneToMany(() => Bet, (bet) => bet.ticket)
-  bets: Bet;
+  bets: Bet[];
 
   @ManyToOne(() => Scan, (scan) => scan.id, { nullable: true })
   scan: Scan;

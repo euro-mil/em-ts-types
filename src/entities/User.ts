@@ -16,7 +16,7 @@ export class User {
   id: number;
 
   @OneToMany(() => Ticket, (ticket) => ticket.user)
-  tickets: Ticket;
+  tickets: Ticket[];
 
   @ManyToOne(() => Country, (country) => country.id, { nullable: true })
   country: Country;
