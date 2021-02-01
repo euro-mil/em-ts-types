@@ -20,7 +20,7 @@ export class Scan {
   id: number;
 
   @OneToMany(() => Ticket, (ticket) => ticket.scan)
-  tickets: Ticket;
+  tickets: Ticket[];
 
   @Column({
     type: "enum",
